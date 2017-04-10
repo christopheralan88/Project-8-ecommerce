@@ -20,6 +20,7 @@ public class PersistenceConfig {
  
     @Bean
     public DataSource dataSource() {
+        // creates in-memory H2 database
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
     }
  
@@ -28,11 +29,14 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+
+        // sets package to scan for database entities
         entityManagerFactoryBean.setPackagesToScan("com.acme.ecommerce.domain");
         entityManagerFactoryBean.setJpaProperties(jpaProperties());
         return entityManagerFactoryBean;
     }
- 
+
+    // set Hibernate properties with this method rather than with Hibernate config file
     private Properties jpaProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");

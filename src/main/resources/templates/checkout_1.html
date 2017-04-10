@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
@@ -32,11 +32,18 @@
 	                <span th:inline="text" class="item-quantity">Quantity: [[${productPurchase.quantity}]]</span>
 	            </div>
             </div>
+
             <div class="coupon-code">
+                <!--this div is for coupon code errors-->
+                <div th:if="${error}">
+                    <p th:text="${error}"></p>
+                </div>
+
                 <form id="couponForm" action="#" th:action="@{/checkout/coupon}" th:object="${couponCode}" method="post">
                     <input type="text" th:field="*{code}" placeholder="Enter coupon code"/>
                 </form>
             </div>
+
             <div class="subtotal">
                 Subtotal: <strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong>
             </div>

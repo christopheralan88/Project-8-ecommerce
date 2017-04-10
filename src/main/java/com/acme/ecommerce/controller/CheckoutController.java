@@ -44,7 +44,7 @@ public class CheckoutController {
 	@Autowired
 	PurchaseService purchaseService;
 	
-	@RequestMapping("/coupon")
+	@RequestMapping(value = "/coupon", method = RequestMethod.GET)
 	String checkoutCoupon(Model model) {
     	Purchase purchase = sCart.getPurchase();
     	BigDecimal subTotal = new BigDecimal(0);
@@ -52,14 +52,18 @@ public class CheckoutController {
     	
     	model.addAttribute("purchase", purchase);
     	if (purchase != null) {
-    		
+
+			// creates new CouponCode if the purchase does not already have one
     		if (couponCode == null) {
     			couponCode = new CouponCode();
     		}
-    		
+
+    		// compute subtotal based on purchase and coupon code
     		subTotal = computeSubtotal(purchase, couponCode);
-    		
+
     		model.addAttribute("subTotal", subTotal);
+
+    		// adds coupon code (whether blank or not) to model
     		model.addAttribute("couponCode", couponCode);
     	} else {
     		logger.error("No purchases Found!");
@@ -69,8 +73,14 @@ public class CheckoutController {
 	}
 
 	@RequestMapping(path="/coupon", method = RequestMethod.POST)
-	String postCouponCode(Model model, @ModelAttribute(value="couponCode") CouponCode couponCode) {
-    	sCart.setCouponCode(couponCode);
+	String postCouponCode(Model model, @ModelAttribute(value="couponCode") @Valid CouponCode couponCode,
+						  BindingResult result, RedirectAttributes redirectAttributes) {
+    	if (result.hasErrors()) {
+    		redirectAttributes.addFlashAttribute("error", "That coupon code is not valid");
+    		return "redirect:coupon";
+		}
+
+		sCart.setCouponCode(couponCode);
    	
 		return "redirect:shipping";
 	}
