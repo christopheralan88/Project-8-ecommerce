@@ -245,13 +245,27 @@ public class CheckoutController {
     		model.addAttribute("orderNumber", purchase.getOrderNumber());
     		model.addAttribute("shippingAddress", purchase.getShippingAddress());
     		model.addAttribute("billingAddress", purchase.getBillingAddress());
-    		model.addAttribute("creditCard", purchase.getCreditCardNumber());
+    		model.addAttribute("creditCard", formatCreditCardNumber(purchase.getCreditCardNumber()));
+
     	} else {
     		logger.error("No purchases Found!");
     		return("redirect:/error");
     	}
     	
 		return "order_confirmation";
+	}
+
+	private String formatCreditCardNumber(String creditCardNumber) {
+		String maskedCCNumber = "";
+		int splitPoint = creditCardNumber.length() - 4;
+
+		for (int i=0; i < splitPoint; i++) {
+			maskedCCNumber += "*";
+		}
+
+		maskedCCNumber += creditCardNumber.substring(splitPoint, splitPoint + 4);
+
+		return maskedCCNumber;
 	}
 	
 	@RequestMapping(value = "/email", method = RequestMethod.GET)

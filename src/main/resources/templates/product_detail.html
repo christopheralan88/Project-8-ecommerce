@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
@@ -37,6 +37,7 @@
                 </p>
                 <div class="product-cart-options">
                     <form id="detailCartForm" name="detailCartForm" action="#" th:action="@{/cart/add}" method="post">
+                        <p th:if="${error}" th:text="${error}"></p>
                         <input type="text" class="quantity" th:value="${productPurchase.quantity}" name="quantity"/>
                         <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
                         <a name="detailButton" class="button" href="javascript:;" onclick="document.getElementById('detailCartForm').submit();">Add to Cart</a>

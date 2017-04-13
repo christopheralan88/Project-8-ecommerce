@@ -36,7 +36,8 @@
 		                </form>
 		            </div>
 		            <form class="cart-quantity" th:id="@{/cartQuantity{productId}(productId=${productPurchase.product.id})}" action="#" th:action="@{/cart/update}" method="post">
-	                    <input type="text" class="quantity" name="newQuantity" th:value="${productPurchase.quantity}"/>
+						<p th:if="${errorProdId == productPurchase.product.id}" th:text="${error}"></p>
+						<input type="text" class="quantity" name="newQuantity" th:value="${productPurchase.quantity}"/>
 	                    <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
 	                    <a class="button-link" href="javascript:;" onclick="parentNode.submit();">Update</a>
 	                </form>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="summary-info">
                         <h3>Billing Info:</h3>
-                        <span th:text="|Credit Card ${creditCard}|">Credit Card XXXX</span>
+                        <span th:text="'Credit Card ' + ${creditCard}">Credit Card XXXX</span>
                     </div>
                 </div>
                 <div class="mini-cart">

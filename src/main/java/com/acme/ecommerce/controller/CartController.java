@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
@@ -62,22 +63,35 @@ public class CartController {
     }
     
     @RequestMapping(path="/add", method = RequestMethod.POST)
-    public RedirectView addToCart(@ModelAttribute(value="productId") long productId, @ModelAttribute(value="quantity") int quantity) {
+    public RedirectView addToCart(@ModelAttribute(value="productId") long productId, @ModelAttribute(value="quantity") int quantity,
+								  RedirectAttributes redirectAttributes) {
     	boolean productAlreadyInCart = false;
     	RedirectView redirect = new RedirectView("/product/");
 		redirect.setExposeModelAttributes(false);
-    	
+
+		// test if there are enough products in stock for order
     	Product addProduct = productService.findById(productId);
+    	if (addProduct.getQuantity() < quantity) {
+    		redirectAttributes.addFlashAttribute("error",
+					String.format("Sorry, there are only %d items in stock", addProduct.getQuantity()));
+    		redirect.setUrl(String.format("/product/detail/%d", addProduct.getId()));
+    		return redirect;
+		}
+
 		if (addProduct != null) {
 	    	logger.debug("Adding Product: " + addProduct.getId());
-	    	
+
+	    	//get current cart purchase
     		Purchase purchase = sCart.getPurchase();
+
+    		//if there is no current purchase, then create a new purchase object
     		if (purchase == null) {
     			purchase = new Purchase();
     			sCart.setPurchase(purchase);
     		} else {
     			for (ProductPurchase pp : purchase.getProductPurchases()) {
     				if (pp.getProduct() != null) {
+						// if product already exists in cart, then add quantity from HTML form to purchase's existing quantity
     					if (pp.getProduct().getId().equals(productId)) {
     						pp.setQuantity(pp.getQuantity() + quantity);
     						productAlreadyInCart = true;
@@ -104,12 +118,23 @@ public class CartController {
     }
  
     @RequestMapping(path="/update", method = RequestMethod.POST)
-    public RedirectView updateCart(@ModelAttribute(value="productId") long productId, @ModelAttribute(value="newQuantity") int newQuantity) {
+    public RedirectView updateCart(@ModelAttribute(value="productId") long productId,
+								   @ModelAttribute(value="newQuantity") int newQuantity,
+								   RedirectAttributes redirectAttributes) {
+
     	logger.debug("Updating Product: " + productId + " with Quantity: " + newQuantity);
 		RedirectView redirect = new RedirectView("/cart");
 		redirect.setExposeModelAttributes(false);
     	
     	Product updateProduct = productService.findById(productId);
+		if (updateProduct.getQuantity() < newQuantity) {
+			redirectAttributes.addFlashAttribute("error",
+					String.format("Sorry, there are only %d items in stock", updateProduct.getQuantity()));
+			redirectAttributes.addFlashAttribute("errorProdId", productId);
+			redirect.setUrl("/cart");
+			return redirect;
+		}
+
     	if (updateProduct != null) {
     		Purchase purchase = sCart.getPurchase();
     		if (purchase == null) {
