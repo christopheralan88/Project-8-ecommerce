@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+    <body>
+        <div th:fragment="header">
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="/product/about">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <!--<li th:if="${purchase.productPurchases.size() != 0}" th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}"></li>-->
+                    <!--<li th:if="${purchase.productPurchases.size() != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart ' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li th:if="${purchase.productPurchases == null or purchase.productPurchases.size() == 0}"><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>-->
+                    <!--<li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>-->
+                    <!--<li th:if="${purchase.productPurchases.size() != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart ' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li th:if="${purchase.productPurchases == null or purchase.productPurchases.size() == 0}"><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>-->
+                    <li th:if="${subTotal != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart ' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li th:if="${subTotal == null or subTotal == 0}"><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </body>
+</html>
+

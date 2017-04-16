@@ -12,16 +12,18 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header>
+		<header th:include="header :: header"></header>
+        <!--<header>
             <a class="logo" href="/product/">CartShop</a>
             <nav>
                 <ul>
                     <li><a href="/product/about">About</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+					<li th:if="${purchase.productPurchases.size() != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
+					<li th:if="${purchase.productPurchases.size() == 0}"><a class="button icon-right" href="/cart" th:text="View Cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
                 </ul>
             </nav>
-        </header>
+        </header>-->
         <section class="cart">
             <h1>Your Cart</h1>
             <div th:if="${purchase != null and not #lists.isEmpty(purchase.productPurchases)}">

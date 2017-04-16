@@ -1,7 +1,6 @@
 package com.acme.ecommerce.controller;
 
-import com.acme.ecommerce.domain.Product;
-import com.acme.ecommerce.domain.ProductPurchase;
+import com.acme.ecommerce.domain.*;
 import com.acme.ecommerce.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/product")
@@ -33,6 +33,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductService productService;
+
+	@Autowired
+	private ShoppingCart sCart;
 	
 	@Autowired
 	HttpSession session;
@@ -44,6 +47,17 @@ public class ProductController {
     public String index(Model model, @RequestParam(value = "page", required = false) Integer page) {
     	logger.debug("Getting Product List");
     	logger.debug("Session ID = " + session.getId());
+
+    	/*
+		Purchase purchase = sCart.getPurchase();
+		CouponCode couponCode = sCart.getCouponCode();
+		BigDecimal subTotal = new BigDecimal(0);
+		if (purchase != null) {
+			subTotal = computeSubtotal(purchase, couponCode);
+			model.addAttribute("subTotal", subTotal);
+		}
+		model.addAttribute("purchase", purchase);
+		*/
     	
 		// Evaluate page. If requested parameter is null or less than 0 (to
 		// prevent exception), return initial size. Otherwise, return value of
@@ -105,4 +119,21 @@ public class ProductController {
     	logger.warn("Happy Easter! Someone actually clicked on About.");
     	return("about");
     }
+
+	private BigDecimal computeSubtotal(Purchase purchase, CouponCode couponCode) {
+
+		BigDecimal subTotal = new BigDecimal(0);
+
+		for (ProductPurchase pp : purchase.getProductPurchases()) {
+			logger.debug("cart has " + pp.getQuantity() + " of " + pp.getProduct().getName() + " at " + "$" + pp.getProduct().getPrice());
+			subTotal = subTotal.add(pp.getProduct().getPrice().multiply(new BigDecimal(pp.getQuantity())));
+		}
+
+		if (couponCode.getCode() != null && !couponCode.getCode().isEmpty()) {
+			logger.info("Applying discount for coupon");
+			subTotal = subTotal.multiply(new BigDecimal(0.9));
+		}
+
+		return subTotal;
+	}
 }

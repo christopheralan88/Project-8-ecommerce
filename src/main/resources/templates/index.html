@@ -18,10 +18,11 @@
                 <ul>
                     <li><a href="#">About</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a name="cartButton" class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
                 </ul>
             </nav>
         </header>
+        <!--<header th:include="header :: header"></header>-->
         <section class="product-listing">  
         	<div th:each="product,iterStat : ${products}" class="item">
                 <a th:href="@{/product/detail/{productId}(productId=${product.id})}"><img th:src="@{/product/{productId}/image(productId=${product.id})}"/></a>
