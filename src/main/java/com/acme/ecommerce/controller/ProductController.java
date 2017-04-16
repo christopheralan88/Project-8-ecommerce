@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,7 @@ import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/product")
+@Scope("request")
 public class ProductController {
 	
 	final Logger logger = LoggerFactory.getLogger(ProductController.class);
@@ -48,16 +50,14 @@ public class ProductController {
     	logger.debug("Getting Product List");
     	logger.debug("Session ID = " + session.getId());
 
-    	/*
 		Purchase purchase = sCart.getPurchase();
 		CouponCode couponCode = sCart.getCouponCode();
 		BigDecimal subTotal = new BigDecimal(0);
 		if (purchase != null) {
-			subTotal = computeSubtotal(purchase, couponCode);
+			subTotal = computeSubtotal(purchase);
 			model.addAttribute("subTotal", subTotal);
 		}
 		model.addAttribute("purchase", purchase);
-		*/
     	
 		// Evaluate page. If requested parameter is null or less than 0 (to
 		// prevent exception), return initial size. Otherwise, return value of
@@ -74,6 +74,15 @@ public class ProductController {
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
     public String productDetail(@PathVariable long id, Model model) {
     	logger.debug("Details for Product " + id);
+
+		Purchase purchase = sCart.getPurchase();
+		CouponCode couponCode = sCart.getCouponCode();
+		BigDecimal subTotal = new BigDecimal(0);
+		if (purchase != null) {
+			subTotal = computeSubtotal(purchase);
+			model.addAttribute("subTotal", subTotal);
+		}
+		model.addAttribute("purchase", purchase);
     	
     	Product returnProduct = productService.findById(id);
     	if (returnProduct != null) {
@@ -115,24 +124,34 @@ public class ProductController {
     }
     
     @RequestMapping(path = "/about")
-    public String aboutCartShop() {
+    public String aboutCartShop(Model model) {
     	logger.warn("Happy Easter! Someone actually clicked on About.");
+
+		Purchase purchase = sCart.getPurchase();
+		CouponCode couponCode = sCart.getCouponCode();
+		BigDecimal subTotal = new BigDecimal(0);
+		if (purchase != null) {
+			subTotal = computeSubtotal(purchase);
+			model.addAttribute("subTotal", subTotal);
+		}
+		model.addAttribute("purchase", purchase);
+
     	return("about");
     }
 
-	private BigDecimal computeSubtotal(Purchase purchase, CouponCode couponCode) {
+	public static BigDecimal computeSubtotal(Purchase purchase) {
 
 		BigDecimal subTotal = new BigDecimal(0);
 
 		for (ProductPurchase pp : purchase.getProductPurchases()) {
-			logger.debug("cart has " + pp.getQuantity() + " of " + pp.getProduct().getName() + " at " + "$" + pp.getProduct().getPrice());
+			//logger.debug("cart has " + pp.getQuantity() + " of " + pp.getProduct().getName() + " at " + "$" + pp.getProduct().getPrice());
 			subTotal = subTotal.add(pp.getProduct().getPrice().multiply(new BigDecimal(pp.getQuantity())));
 		}
 
-		if (couponCode.getCode() != null && !couponCode.getCode().isEmpty()) {
+		/*if (couponCode.getCode() != null && !couponCode.getCode().isEmpty()) {
 			logger.info("Applying discount for coupon");
 			subTotal = subTotal.multiply(new BigDecimal(0.9));
-		}
+		}*/
 
 		return subTotal;
 	}
