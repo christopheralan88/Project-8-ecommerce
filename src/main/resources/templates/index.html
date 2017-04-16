@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header>
+        <header th:if="${purchase == null}">
             <a class="logo" href="/product/">CartShop</a>
             <nav>
                 <ul>
@@ -22,7 +22,7 @@
                 </ul>
             </nav>
         </header>
-        <!--<header th:include="header :: header"></header>-->
+        <header th:if="${purchase != null}" th:include="header :: header"></header>
         <section class="product-listing">  
         	<div th:each="product,iterStat : ${products}" class="item">
                 <a th:href="@{/product/detail/{productId}(productId=${product.id})}"><img th:src="@{/product/{productId}/image(productId=${product.id})}"/></a>

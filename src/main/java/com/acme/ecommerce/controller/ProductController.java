@@ -54,11 +54,15 @@ public class ProductController {
 		CouponCode couponCode = sCart.getCouponCode();
 		BigDecimal subTotal = new BigDecimal(0);
 		if (purchase != null) {
-			subTotal = computeSubtotal(purchase);
+			if (couponCode != null) {
+				subTotal = computeSubtotal(purchase, couponCode);
+			} else {
+				subTotal = computeSubtotal(purchase);
+			}
 			model.addAttribute("subTotal", subTotal);
 		}
 		model.addAttribute("purchase", purchase);
-    	
+
 		// Evaluate page. If requested parameter is null or less than 0 (to
 		// prevent exception), return initial size. Otherwise, return value of
 		// param. decreased by 1.
@@ -152,6 +156,23 @@ public class ProductController {
 			logger.info("Applying discount for coupon");
 			subTotal = subTotal.multiply(new BigDecimal(0.9));
 		}*/
+
+		return subTotal;
+	}
+
+	public static BigDecimal computeSubtotal(Purchase purchase, CouponCode couponCode) {
+
+		BigDecimal subTotal = new BigDecimal(0);
+
+		for (ProductPurchase pp : purchase.getProductPurchases()) {
+			//logger.debug("cart has " + pp.getQuantity() + " of " + pp.getProduct().getName() + " at " + "$" + pp.getProduct().getPrice());
+			subTotal = subTotal.add(pp.getProduct().getPrice().multiply(new BigDecimal(pp.getQuantity())));
+		}
+
+		if (couponCode.getCode() != null && !couponCode.getCode().isEmpty()) {
+			//logger.info("Applying discount for coupon");
+			subTotal = subTotal.multiply(new BigDecimal(0.9));
+		}
 
 		return subTotal;
 	}
