@@ -161,12 +161,16 @@ public class CartController {
     		logger.error("Attempt to update on non-existent product");
     		redirect.setUrl("/error");
     	}
+
+    	// test
+		redirectAttributes.addFlashAttribute("message", "Your cart has been updated");
     	
     	return redirect;
     }
     
     @RequestMapping(path="/remove", method = RequestMethod.POST)
-    public RedirectView removeFromCart(@ModelAttribute(value="productId") long productId) {
+    public RedirectView removeFromCart(@ModelAttribute(value="productId") long productId,
+									   RedirectAttributes redirectAttributes) {
     	logger.debug("Removing Product: " + productId);
 		RedirectView redirect = new RedirectView("/cart");
 		redirect.setExposeModelAttributes(false);
@@ -186,6 +190,8 @@ public class CartController {
     			}
     			purchase = purchaseService.save(purchase);
     			sCart.setPurchase(purchase);
+    			redirectAttributes.addFlashAttribute("message", String.format("%s has been removed from your order", updateProduct.getName()));
+				//redirect.setUrl("/cart");
     			if (purchase.getProductPurchases().isEmpty()) {
         	    	//if last item in cart redirect to product else return cart
         			redirect.setUrl("/product/");

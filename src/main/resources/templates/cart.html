@@ -13,19 +13,9 @@
     </head>
     <body>
 		<header th:include="header :: header"></header>
-        <!--<header>
-            <a class="logo" href="/product/">CartShop</a>
-            <nav>
-                <ul>
-                    <li><a href="/product/about">About</a></li>
-                    <li><a href="#">FAQ</a></li>
-					<li th:if="${purchase.productPurchases.size() != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
-					<li th:if="${purchase.productPurchases.size() == 0}"><a class="button icon-right" href="/cart" th:text="View Cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
-                </ul>
-            </nav>
-        </header>-->
         <section class="cart">
             <h1>Your Cart</h1>
+			<p th:text="${message}"></p> <!--test-->
             <div th:if="${purchase != null and not #lists.isEmpty(purchase.productPurchases)}">
 	            <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
 		            <div class="item">
