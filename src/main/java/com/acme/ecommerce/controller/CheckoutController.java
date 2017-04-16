@@ -247,6 +247,9 @@ public class CheckoutController {
     		model.addAttribute("billingAddress", purchase.getBillingAddress());
     		model.addAttribute("creditCard", formatCreditCardNumber(purchase.getCreditCardNumber()));
 
+    		// empty cart since purchases have been paid for
+    		// sCart.setPurchase(null);
+
     	} else {
     		logger.error("No purchases Found!");
     		return("redirect:/error");
