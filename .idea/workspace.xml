@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81160e54-6a63-44cb-a834-9bf96975da5f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ErrorController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/CartController.java" afterPath="$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/CartController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ProductController.java" afterPath="$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ProductController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/normalize.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/normalize.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/header.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/product_detail.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/product_detail.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -1077,7 +1069,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492377065368</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="basic reqs met without unit tests">
+      <created>1492485821426</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1492485821426</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1126,7 +1125,8 @@
     <MESSAGE value="sub total added to View Cart button on more views" />
     <MESSAGE value="View Cart button works on index page" />
     <MESSAGE value="Flash messaging added for updating quantity and removing product" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flash messaging added for updating quantity and removing product" />
+    <MESSAGE value="basic reqs met without unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic reqs met without unit tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
