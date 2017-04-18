@@ -12,7 +12,17 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header th:include="header :: header"></header>
+        <header th:if="${subTotal == null}">
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <header th:if="${subTotal != null}" th:include="header :: header"></header>
         <section class="product-detail">
             <div class="product-image">
                  <img th:src="@{/product/{productId}/image(productId=${product.id})}"/>

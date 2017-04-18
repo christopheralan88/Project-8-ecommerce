@@ -422,3 +422,10 @@ td,
 th {
   padding: 0;
 }
+
+.flash-message {
+  text-align: center;
+  padding-top: 20px;
+  background-color: skyblue;
+  padding-bottom: 20px;
+}

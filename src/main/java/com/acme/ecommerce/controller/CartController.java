@@ -69,16 +69,17 @@ public class CartController {
     	RedirectView redirect = new RedirectView("/product/");
 		redirect.setExposeModelAttributes(false);
 
-		// test if there are enough products in stock for order
     	Product addProduct = productService.findById(productId);
-    	if (addProduct.getQuantity() < quantity) {
-    		redirectAttributes.addFlashAttribute("error",
-					String.format("Sorry, there are only %d items in stock", addProduct.getQuantity()));
-    		redirect.setUrl(String.format("/product/detail/%d", addProduct.getId()));
-    		return redirect;
-		}
 
 		if (addProduct != null) {
+			// test if there are enough products in stock for order
+			if (addProduct.getQuantity() < quantity) {
+				redirectAttributes.addFlashAttribute("error",
+						String.format("Sorry, there are only %d items in stock", addProduct.getQuantity()));
+				redirect.setUrl(String.format("/product/detail/%d", addProduct.getId()));
+				return redirect;
+			}
+
 	    	logger.debug("Adding Product: " + addProduct.getId());
 
 	    	//get current cart purchase
@@ -109,6 +110,7 @@ public class CartController {
     		}
     		logger.debug("Added " + quantity + " of " + addProduct.getName() + " to cart");
     		sCart.setPurchase(purchaseService.save(purchase));
+    		redirectAttributes.addFlashAttribute("message", String.format("%s has been added to your cart", addProduct.getName()));
 		} else {
 			logger.error("Attempt to add unknown product: " + productId);
 			redirect.setUrl("/error");
@@ -209,7 +211,7 @@ public class CartController {
     }
     
     @RequestMapping(path="/empty", method = RequestMethod.POST)
-    public RedirectView emptyCart() {
+    public RedirectView emptyCart(RedirectAttributes redirectAttributes) {
     	RedirectView redirect = new RedirectView("/product/");
 		redirect.setExposeModelAttributes(false);
     	
@@ -218,6 +220,7 @@ public class CartController {
 		if (purchase != null) {
 			purchase.getProductPurchases().clear();
 			sCart.setPurchase(purchaseService.save(purchase));
+			redirectAttributes.addFlashAttribute("message", "All items in your cart have been deleted");
 		} else {
 			logger.error("Unable to find shopping cart for update");
 			redirect.setUrl("/error");

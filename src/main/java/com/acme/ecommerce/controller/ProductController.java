@@ -2,6 +2,7 @@ package com.acme.ecommerce.controller;
 
 import com.acme.ecommerce.domain.*;
 import com.acme.ecommerce.service.ProductService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpSession;
@@ -76,7 +78,7 @@ public class ProductController {
     }
     
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
-    public String productDetail(@PathVariable long id, Model model) {
+    public String productDetail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
     	logger.debug("Details for Product " + id);
 
 		Purchase purchase = sCart.getPurchase();
@@ -97,11 +99,17 @@ public class ProductController {
     		model.addAttribute("productPurchase", productPurchase);
     	} else {
     		logger.error("Product " + id + " Not Found!");
+    		redirectAttributes.addFlashAttribute("message", "Sorry, we could not find that product in our database");
     		return "redirect:/error";
     	}
 
         return "product_detail";
     }
+
+	@RequestMapping(path = "/error", method = RequestMethod.GET)
+	public String errorView(Model model) {
+		return "error";
+	}
     
     @RequestMapping(path="/{id}/image", method = RequestMethod.GET)
     @ResponseBody
