@@ -24,6 +24,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -40,10 +41,13 @@ public class CheckoutControllerTest {
 
 	@Mock
 	private ProductService productService;
+
 	@Mock
 	private PurchaseService purchaseService;
+
 	@Mock
 	private ShoppingCart sCart;
+
 	@InjectMocks
 	private CheckoutController checkoutController;
 
@@ -81,10 +85,17 @@ public class CheckoutControllerTest {
 	}
 
 	@Test
-	public void postCouponTest() throws Exception {
+	public void postLongCouponCodeTest() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abcdefghijklmnopqrstuvwxyz")).andDo(print())
+				.andExpect(flash().attributeExists("error"))
+				.andExpect(redirectedUrl("coupon"));
+	}
+
+	@Test
+	public void postShortCouponCodeTest() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abcd")).andDo(print())
-				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("shipping"));
+				.andExpect(flash().attributeExists("error"))
+				.andExpect(redirectedUrl("coupon"));
 	}
 
 	@Test

@@ -46,5 +46,5 @@ dependencies {
 bootRun {
     // Update path to the directory that contains your
     // eCommerce.properties file
-	jvmArgs = ["-Dproperties.home=C:/Users/Chris.Jones/IdeaProjects/Project-8-ecommerce/src/main/resources"]
+	jvmArgs = ["-Dproperties.home=./properties"]
 }
