@@ -46,6 +46,7 @@ public class CartControllerTest {
 	private PurchaseService purchaseService;
 	@Mock
 	private ShoppingCart sCart;
+
 	@InjectMocks
 	private CartController cartController;
 
@@ -124,6 +125,38 @@ public class CartControllerTest {
 				.andDo(print())
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/cart"));
+	}
+
+	@Test
+	public void updateQuantityLargerThanStockFromCartViewTest() throws Exception {
+		Product product = productBuilder();
+
+		when(productService.findById(1L)).thenReturn(product);
+
+		Purchase purchase = purchaseBuilder(product);
+
+		when(sCart.getPurchase()).thenReturn(purchase);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/cart/update").param("newQuantity", "10").param("productId", "1"))
+				.andDo(print())
+				.andExpect(flash().attributeExists("error"))
+				.andExpect(redirectedUrl("/cart"));
+	}
+
+	@Test
+	public void updateQuantityLargerThanStockFromProductDetailViewTest() throws Exception {
+		Product product = productBuilder();
+
+		when(productService.findById(1L)).thenReturn(product);
+
+		Purchase purchase = purchaseBuilder(product);
+
+		when(sCart.getPurchase()).thenReturn(purchase);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/cart/add").param("quantity", "10").param("productId", "1"))
+				.andDo(print())
+				.andExpect(flash().attributeExists("error"))
+				.andExpect(redirectedUrl("/product/detail/1"));
 	}
 
 	@Test

@@ -137,7 +137,7 @@ public class ProductController {
     
     @RequestMapping(path = "/about")
     public String aboutCartShop(Model model) {
-    	logger.warn("Happy Easter! Someone actually clicked on About.");
+    	logger.warn("Happy Passover! Someone actually clicked on About.");
 
 		Purchase purchase = sCart.getPurchase();
 		CouponCode couponCode = sCart.getCouponCode();

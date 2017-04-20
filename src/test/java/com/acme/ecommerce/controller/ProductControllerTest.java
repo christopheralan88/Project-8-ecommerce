@@ -2,6 +2,9 @@ package com.acme.ecommerce.controller;
 
 import com.acme.ecommerce.Application;
 import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.domain.ProductPurchase;
+import com.acme.ecommerce.domain.Purchase;
+import com.acme.ecommerce.domain.ShoppingCart;
 import com.acme.ecommerce.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +48,10 @@ public class ProductControllerTest {
 
 	@Mock
 	private ProductService productService;
+
+	@Mock
+	private ShoppingCart sCart;
+
 	@InjectMocks
 	private ProductController productController;
 
@@ -76,6 +83,35 @@ public class ProductControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.get("/product/"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("index"));
+	}
+
+	@Test
+	public void indexViewShowsSubtotalInViewCartButton() throws Exception {
+
+		Product product = productBuilder();
+
+		Product product2 = productBuilder();
+		product2.setId(2L);
+
+		List<Product> pList = new ArrayList<Product>();
+		pList.add(product);
+		pList.add(product2);
+
+		Page<Product> products = new PageImpl<Product>(pList);
+
+		when(productService.findAll(new PageRequest(1, 2))).thenReturn(products);
+
+		Product product3 = productBuilder();
+		when(productService.findById(1L)).thenReturn(product3);
+		Purchase purchase = purchaseBuilder(product3);
+		when(sCart.getPurchase()).thenReturn(purchase);
+		sCart.setPurchase(purchase); //test
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/product/"))
+				.andDo(print())
+				//.andExpect(status().isOk())
+				.andExpect(flash().attributeExists("subTotal"))
+				.andExpect(view().name("index"));
 	}
 
 	@Test
@@ -132,5 +168,19 @@ public class ProductControllerTest {
 		product.setFullImageName("imagename");
 		product.setThumbImageName("imagename");
 		return product;
+	}
+
+	private Purchase purchaseBuilder(Product product) {
+		ProductPurchase pp = new ProductPurchase();
+		pp.setProductPurchaseId(1L);
+		pp.setQuantity(1);
+		pp.setProduct(product);
+		List<ProductPurchase> ppList = new ArrayList<ProductPurchase>();
+		ppList.add(pp);
+
+		Purchase purchase = new Purchase();
+		purchase.setId(1L);
+		purchase.setProductPurchases(ppList);
+		return purchase;
 	}
 }
