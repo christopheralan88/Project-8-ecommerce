@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81160e54-6a63-44cb-a834-9bf96975da5f" name="Default" comment="started unit testing">
+    <list default="true" id="81160e54-6a63-44cb-a834-9bf96975da5f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java" />
     </list>
@@ -101,8 +101,8 @@
       <file leaf-file-name="CheckoutController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/CheckoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="182">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -111,8 +111,8 @@
       <file leaf-file-name="CheckoutControllerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="99" column="39" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="39" />
+            <state relative-caret-position="214">
+              <caret line="99" column="60" lean-forward="true" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -703,7 +703,7 @@
       <recent name="C:\Users\Chris.Jones\IdeaProjects\Project-8-ecommerce\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CheckoutControllerTest.postShortCouponCodeTest">
+  <component name="RunManager" selected="JUnit.CheckoutControllerTest.postLongCouponCodeTest">
     <configuration default="false" name="Project-8-ecommerce [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1007,8 +1007,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.postShortCouponCodeTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.postLongCouponCodeTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.postLongCouponCodeTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.postShortCouponCodeTest" />
         <item index="2" class="java.lang.String" itemvalue="Gradle.Project-8-ecommerce [bootRun]" />
       </list>
     </recent_temporary>
@@ -1111,22 +1111,17 @@
       <option name="project" value="LOCAL" />
       <updated>1492576116928</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="can't get postShortCouponCodeTest() method to work">
+      <created>1492652987112</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1492652987112</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_Tests - 2017.04.19 at 00h 12m 46s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_Tests - 2017.04.19 at 00h 27m 32s.xml">
-      <configuration name="All Tests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CheckoutControllerTest_postLongCouponCodeTest - 2017.04.19 at 09h 51m 15s.xml">
-      <configuration name="CheckoutControllerTest.postLongCouponCodeTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CheckoutControllerTest_postLongCouponCodeTest - 2017.04.19 at 09h 55m 08s.xml">
-      <configuration name="CheckoutControllerTest.postLongCouponCodeTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CheckoutControllerTest_postLongCouponCodeTest - 2017.04.19 at 10h 02m 21s.xml">
       <configuration name="CheckoutControllerTest.postLongCouponCodeTest" configurationId="JUnit" />
     </history-entry>
@@ -1136,6 +1131,9 @@
     <history-entry file="CheckoutControllerTest_postLongCouponCodeTest - 2017.04.19 at 21h 27m 01s.xml">
       <configuration name="CheckoutControllerTest.postLongCouponCodeTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CheckoutControllerTest_postLongCouponCodeTest - 2017.04.19 at 21h 55m 07s.xml">
+      <configuration name="CheckoutControllerTest.postLongCouponCodeTest" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="CheckoutControllerTest_postShortCouponCodeTest - 2017.04.19 at 10h 04m 24s.xml">
       <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
     </history-entry>
@@ -1143,6 +1141,15 @@
       <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CheckoutControllerTest_postShortCouponCodeTest - 2017.04.19 at 21h 43m 04s.xml">
+      <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CheckoutControllerTest_postShortCouponCodeTest - 2017.04.19 at 21h 51m 44s.xml">
+      <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CheckoutControllerTest_postShortCouponCodeTest - 2017.04.19 at 21h 52m 38s.xml">
+      <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CheckoutControllerTest_postShortCouponCodeTest - 2017.04.19 at 21h 53m 39s.xml">
       <configuration name="CheckoutControllerTest.postShortCouponCodeTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1159,7 +1166,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.547588" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39374185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1171,7 +1178,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.547588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.547588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1194,7 +1201,8 @@
     <MESSAGE value="Flash messaging added for updating quantity and removing product" />
     <MESSAGE value="basic reqs met without unit tests" />
     <MESSAGE value="started unit testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="started unit testing" />
+    <MESSAGE value="can't get postShortCouponCodeTest() method to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="can't get postShortCouponCodeTest() method to work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1373,6 +1381,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="968" column="0" lean-forward="false" selection-start-line="968" selection-start-column="0" selection-end-line="968" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1632,16 +1641,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/CheckoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="182">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="99" column="39" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="39" />
+        <state relative-caret-position="214">
+          <caret line="99" column="60" lean-forward="true" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

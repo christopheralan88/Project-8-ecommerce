@@ -90,15 +90,17 @@ public class CheckoutControllerTest {
 	@Test
 	public void postLongCouponCodeTest() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon")
-				.param("couponCode", "abcdefghijklmnopqrstuvwxyz")).andDo(print())
-				//.andExpect(flash().attributeExists("error"))
+				.param("code", "abcdefghijklmnopqrstuvwxyz"))
+				.andDo(print())
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("coupon"));
 	}
 
 	@Test
 	public void postShortCouponCodeTest() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abc")).andDo(print())
+		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon")
+				.param("code", "abc"))
+				.andDo(print())
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("coupon"));
 	}
