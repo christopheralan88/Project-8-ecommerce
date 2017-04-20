@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,7 +18,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
 
+import javax.naming.Binding;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,15 +89,17 @@ public class CheckoutControllerTest {
 
 	@Test
 	public void postLongCouponCodeTest() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abcdefghijklmnopqrstuvwxyz")).andDo(print())
-				.andExpect(flash().attributeExists("error"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon")
+				.param("couponCode", "abcdefghijklmnopqrstuvwxyz")).andDo(print())
+				//.andExpect(flash().attributeExists("error"))
+				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("coupon"));
 	}
 
 	@Test
 	public void postShortCouponCodeTest() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abcd")).andDo(print())
-				.andExpect(flash().attributeExists("error"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/checkout/coupon").param("couponCode", "abc")).andDo(print())
+				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("coupon"));
 	}
 
