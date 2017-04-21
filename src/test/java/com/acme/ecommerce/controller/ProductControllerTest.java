@@ -28,6 +28,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -50,7 +51,10 @@ public class ProductControllerTest {
 	private ProductService productService;
 
 	@Mock
-	private ShoppingCart sCart;
+	private ShoppingCart sCart; // test - purchase field should be mocked and injected into sCart bc sCart has purchase field
+
+	@Mock
+	private Purchase purchase; // test - this should be injected into sCart's purchase field
 
 	@InjectMocks
 	private ProductController productController;
@@ -87,30 +91,11 @@ public class ProductControllerTest {
 
 	@Test
 	public void indexViewShowsSubtotalInViewCartButton() throws Exception {
-
-		Product product = productBuilder();
-
-		Product product2 = productBuilder();
-		product2.setId(2L);
-
-		List<Product> pList = new ArrayList<Product>();
-		pList.add(product);
-		pList.add(product2);
-
-		Page<Product> products = new PageImpl<Product>(pList);
-
-		when(productService.findAll(new PageRequest(1, 2))).thenReturn(products);
-
-		Product product3 = productBuilder();
-		when(productService.findById(1L)).thenReturn(product3);
-		Purchase purchase = purchaseBuilder(product3);
-		when(sCart.getPurchase()).thenReturn(purchase);
-		sCart.setPurchase(purchase); //test
+		doReturn(purchase).when(sCart).getPurchase();
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/product/"))
 				.andDo(print())
-				//.andExpect(status().isOk())
-				.andExpect(flash().attributeExists("subTotal"))
+				.andExpect(model().attributeExists("subTotal"))
 				.andExpect(view().name("index"));
 	}
 
