@@ -194,10 +194,12 @@ public class CartController {
     			sCart.setPurchase(purchase);
     			redirectAttributes.addFlashAttribute("message", String.format("%s has been removed from your order", updateProduct.getName()));
 				//redirect.setUrl("/cart");
-    			if (purchase.getProductPurchases().isEmpty()) {
-        	    	//if last item in cart redirect to product else return cart
-        			redirect.setUrl("/product/");
-        		}
+				if (purchase == null) {
+					//if (purchase.getProductPurchases().isEmpty()) {
+						//if last item in cart redirect to product else return cart
+						redirect.setUrl("/product/");
+					//}
+				}
     		} else {
     			logger.error("Unable to find shopping cart for update");
     			redirect.setUrl("/error");

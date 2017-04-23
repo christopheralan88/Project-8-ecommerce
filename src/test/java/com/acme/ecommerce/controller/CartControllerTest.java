@@ -160,6 +160,57 @@ public class CartControllerTest {
 	}
 
 	@Test
+	public void addingItemToCartDisplaysFlashMessageIndexView() throws Exception {
+		Product product = productBuilder();
+
+		// this code runs when productService's findById() method is called in controller's method
+		when(productService.findById(1L)).thenReturn(product);
+
+		Purchase purchase = purchaseBuilder(product);
+
+		when(sCart.getPurchase()).thenReturn(purchase);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/cart/add").param("productId", "1").param("quantity", "1"))
+				.andDo(print())
+				.andExpect(flash().attributeExists("message"))
+				.andExpect(redirectedUrl("/product/"));
+	}
+
+	@Test
+	public void removingItemToCartDisplaysFlashMessageIndexView() throws Exception {
+		Product product = productBuilder();
+
+		// this code runs when productService's findById() method is called in controller's method
+		when(productService.findById(1L)).thenReturn(product);
+
+		Purchase purchase = purchaseBuilder(product);
+
+		when(sCart.getPurchase()).thenReturn(purchase);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/cart/remove").param("productId", "1"))
+				.andDo(print())
+				.andExpect(flash().attributeExists("message"))
+				.andExpect(redirectedUrl("/product/"));
+	}
+
+	@Test
+	public void emptyingAllItemsFromCartDisplaysFlashMessageIndexView() throws Exception {
+		Product product = productBuilder();
+
+		// this code runs when productService's findById() method is called in controller's method
+		when(productService.findById(1L)).thenReturn(product);
+
+		Purchase purchase = purchaseBuilder(product);
+
+		when(sCart.getPurchase()).thenReturn(purchase);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/cart/empty"))
+				.andDo(print())
+				.andExpect(flash().attributeExists("message"))
+				.andExpect(redirectedUrl("/product/"));
+	}
+
+	@Test
 	public void updateUnknownCartTest() throws Exception {
 		when(productService.findById(1L)).thenReturn(null);
 
