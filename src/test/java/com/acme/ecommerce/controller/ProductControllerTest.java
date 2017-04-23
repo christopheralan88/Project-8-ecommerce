@@ -110,6 +110,17 @@ public class ProductControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(view().name("product_detail"));
 	}
+
+	@Test
+	public void flashMessageIsDisplayedOnErrorPage() throws Exception {
+		//Product product = productBuilder();
+
+		//when(productService.findById(30L)).thenReturn(product);
+
+		mockMvc.perform((MockMvcRequestBuilders.get("/product/detail/30")).param("id", "30"))
+				.andDo(print())
+				.andExpect(redirectedUrl("/error"));
+	}
 	
 	@Test
 	public void getProductDetailInvalidId() throws Exception {
