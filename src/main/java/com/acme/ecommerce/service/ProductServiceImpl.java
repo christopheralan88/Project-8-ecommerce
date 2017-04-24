@@ -1,6 +1,7 @@
 package com.acme.ecommerce.service;
 
 import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.exceptions.ProductNotFoundException;
 import com.acme.ecommerce.exceptions.QuantityException;
 import com.acme.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product findById(Long id) {
+	public Product findById(Long id) throws ProductNotFoundException {
 		Product result = repository.findOne(id);
-		
-		return result;
+
+		if (result == null) {
+			throw new ProductNotFoundException();
+		} else {
+			return result;
+		}
 	}
 
 	@Override

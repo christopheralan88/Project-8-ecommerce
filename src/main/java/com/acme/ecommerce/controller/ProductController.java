@@ -1,6 +1,7 @@
 package com.acme.ecommerce.controller;
 
 import com.acme.ecommerce.domain.*;
+import com.acme.ecommerce.exceptions.ProductNotFoundException;
 import com.acme.ecommerce.service.ProductService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
@@ -90,7 +91,13 @@ public class ProductController {
 		}
 		model.addAttribute("purchase", purchase);
     	
-    	Product returnProduct = productService.findById(id);
+    	Product returnProduct;
+		try {
+			returnProduct = productService.findById(id);
+		} catch (ProductNotFoundException pnfe) {
+			return "redirect:/error";
+		}
+
     	if (returnProduct != null) {
     		model.addAttribute("product", returnProduct);
     		ProductPurchase productPurchase = new ProductPurchase();
@@ -118,8 +125,14 @@ public class ProductController {
     	
     	logger.debug("Product Image Request for " + id);
     	logger.info("Using imagePath [" + imagePath + "]");
-    	
-    	Product returnProduct = productService.findById(id);
+
+		Product returnProduct;
+		try {
+			returnProduct = productService.findById(id);
+		} catch (ProductNotFoundException pnfe) {
+			return null;
+		}
+
     	String imageFilePath = null;
     	if (returnProduct != null) {
     		if (!imagePath.endsWith("/")) {

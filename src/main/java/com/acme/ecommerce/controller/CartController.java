@@ -4,6 +4,7 @@ import com.acme.ecommerce.domain.Product;
 import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
 import com.acme.ecommerce.domain.ShoppingCart;
+import com.acme.ecommerce.exceptions.ProductNotFoundException;
 import com.acme.ecommerce.exceptions.QuantityException;
 import com.acme.ecommerce.service.ProductService;
 import com.acme.ecommerce.service.PurchaseService;
@@ -178,8 +179,15 @@ public class CartController {
     	logger.debug("Removing Product: " + productId);
 		RedirectView redirect = new RedirectView("/cart");
 		redirect.setExposeModelAttributes(false);
-    	
-    	Product updateProduct = productService.findById(productId);
+
+    	Product updateProduct;
+    	try {
+			updateProduct = productService.findById(productId);
+		} catch (ProductNotFoundException pnfe) {
+    		redirect.setUrl("/error");
+    		return redirect;
+		}
+
     	if (updateProduct != null) {
     		Purchase purchase = sCart.getPurchase();
     		if (purchase != null) {
