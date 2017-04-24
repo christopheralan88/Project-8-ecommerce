@@ -4,6 +4,7 @@ import com.acme.ecommerce.domain.Product;
 import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
 import com.acme.ecommerce.domain.ShoppingCart;
+import com.acme.ecommerce.exceptions.QuantityException;
 import com.acme.ecommerce.service.ProductService;
 import com.acme.ecommerce.service.PurchaseService;
 import org.slf4j.Logger;
@@ -69,16 +70,17 @@ public class CartController {
     	RedirectView redirect = new RedirectView("/product/");
 		redirect.setExposeModelAttributes(false);
 
-    	Product addProduct = productService.findById(productId);
+		Product addProduct;
+		try {
+			addProduct = productService.findById(productId, quantity);
+		} catch (QuantityException qex) {
+			redirectAttributes.addFlashAttribute("error", "Sorry, we don't have that many items in stock");
+			redirect.setUrl(String.format("/product/detail/%d", productId));
+			return redirect;
+		}
+
 
 		if (addProduct != null) {
-			// test if there are enough products in stock for order
-			if (addProduct.getQuantity() < quantity) {
-				redirectAttributes.addFlashAttribute("error",
-						String.format("Sorry, there are only %d items in stock", addProduct.getQuantity()));
-				redirect.setUrl(String.format("/product/detail/%d", addProduct.getId()));
-				return redirect;
-			}
 
 	    	logger.debug("Adding Product: " + addProduct.getId());
 
@@ -127,13 +129,13 @@ public class CartController {
     	logger.debug("Updating Product: " + productId + " with Quantity: " + newQuantity);
 		RedirectView redirect = new RedirectView("/cart");
 		redirect.setExposeModelAttributes(false);
-    	
-    	Product updateProduct = productService.findById(productId);
-		if (updateProduct.getQuantity() < newQuantity) {
-			redirectAttributes.addFlashAttribute("error",
-					String.format("Sorry, there are only %d items in stock", updateProduct.getQuantity()));
+
+		Product updateProduct;
+		try {
+			updateProduct = productService.findById(productId, newQuantity);
+		} catch (QuantityException qex) {
+			redirectAttributes.addFlashAttribute("error", "Sorry, we don't have that many items in stock");
 			redirectAttributes.addFlashAttribute("errorProdId", productId);
-			redirect.setUrl("/cart");
 			return redirect;
 		}
 

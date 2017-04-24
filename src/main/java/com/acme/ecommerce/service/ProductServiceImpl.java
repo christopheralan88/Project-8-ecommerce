@@ -1,6 +1,7 @@
 package com.acme.ecommerce.service;
 
 import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.exceptions.QuantityException;
 import com.acme.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,17 @@ public class ProductServiceImpl implements ProductService {
 	public Product findById(Long id) {
 		Product result = repository.findOne(id);
 		
+		return result;
+	}
+
+	@Override
+	public Product findById(Long id, int quantity) throws QuantityException {
+		Product result = repository.findOne(id);
+
+		if (result.getQuantity() < quantity) {
+			throw new QuantityException();
+		}
+
 		return result;
 	}
 
