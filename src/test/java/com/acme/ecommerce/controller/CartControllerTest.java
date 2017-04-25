@@ -5,6 +5,7 @@ import com.acme.ecommerce.domain.Product;
 import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
 import com.acme.ecommerce.domain.ShoppingCart;
+import com.acme.ecommerce.exceptions.QuantityException;
 import com.acme.ecommerce.service.ProductService;
 import com.acme.ecommerce.service.PurchaseService;
 import org.junit.Before;
@@ -93,7 +94,7 @@ public class CartControllerTest {
 	public void addToCartTest() throws Exception {
 		Product product = productBuilder();
 
-		when(productService.findById(1L)).thenReturn(product);
+		when(productService.findById(1L, 1)).thenReturn(product);
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/add").param("quantity", "1").param("productId", "1"))
 				.andDo(print())
@@ -115,7 +116,7 @@ public class CartControllerTest {
 	public void updateCartTest() throws Exception {
 		Product product = productBuilder();
 
-		when(productService.findById(1L)).thenReturn(product);
+		when(productService.findById(1L, 2)).thenReturn(product);
 
 		Purchase purchase = purchaseBuilder(product);
 
@@ -129,29 +130,20 @@ public class CartControllerTest {
 
 	@Test
 	public void updateQuantityLargerThanStockFromCartViewTest() throws Exception {
-		Product product = productBuilder();
 
-		when(productService.findById(1L)).thenReturn(product);
-
-		Purchase purchase = purchaseBuilder(product);
-
-		when(sCart.getPurchase()).thenReturn(purchase);
+		when(productService.findById(1L, 10)).thenThrow(new QuantityException());
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/update").param("newQuantity", "10").param("productId", "1"))
 				.andDo(print())
 				.andExpect(flash().attributeExists("error"))
+				.andExpect(flash().attributeExists("errorProdId"))
 				.andExpect(redirectedUrl("/cart"));
 	}
 
 	@Test
 	public void updateQuantityLargerThanStockFromProductDetailViewTest() throws Exception {
-		Product product = productBuilder();
 
-		when(productService.findById(1L)).thenReturn(product);
-
-		Purchase purchase = purchaseBuilder(product);
-
-		when(sCart.getPurchase()).thenReturn(purchase);
+		when(productService.findById(1L, 10)).thenThrow(new QuantityException());
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/add").param("quantity", "10").param("productId", "1"))
 				.andDo(print())
