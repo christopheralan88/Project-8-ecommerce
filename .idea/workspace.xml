@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="81160e54-6a63-44cb-a834-9bf96975da5f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/header.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CartControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CartControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/CheckoutControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/TestProductControllerIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/TestProductControllerIT.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -35,16 +30,6 @@
         </task>
         <projects_view>
           <tree_state>
-            <PATH>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="eCommerce" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
-              </PATH_ELEMENT>
-            </PATH>
             <PATH>
               <PATH_ELEMENT>
                 <option name="myItemId" value="" />
@@ -95,6 +80,16 @@
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
               </PATH_ELEMENT>
             </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="eCommerce" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
           </tree_state>
         </projects_view>
       </state>
@@ -102,71 +97,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ProductController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
               <caret line="150" column="30" lean-forward="false" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestProductControllerIT.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/TestProductControllerIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="10" column="86" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cart.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/cart.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="120" lean-forward="false" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/product_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CartController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/CartController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -876,33 +811,7 @@
       <recent name="C:\Users\Chris.Jones\IdeaProjects\Project-8-ecommerce\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All Tests">
-    <configuration default="false" name="CartControllerTest.addToCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.acme.ecommerce.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="eCommerce_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.acme.ecommerce.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.acme.ecommerce.controller.CartControllerTest" />
-      <option name="METHOD_NAME" value="addToCartTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Gradle.Project-8-ecommerce [bootRun]">
     <configuration default="false" name="CartControllerTest.updateCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1005,6 +914,24 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="Project-8-ecommerce [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1234,19 +1161,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.All Tests" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addToCartTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.CartControllerTest.updateCartTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addingItemToCartDisplaysFlashMessageIndexView" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.confirmationTest" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.TestProductControllerIT.ProductDetailAddItemIntegrationTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CartControllerTest.updateCartTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addingItemToCartDisplaysFlashMessageIndexView" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.confirmationTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestProductControllerIT.ProductDetailAddItemIntegrationTest" />
+      <item index="5" class="java.lang.String" itemvalue="Gradle.Project-8-ecommerce [bootRun]" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestProductControllerIT.ProductDetailAddItemIntegrationTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.confirmationTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addingItemToCartDisplaysFlashMessageIndexView" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CartControllerTest.updateCartTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addToCartTest" />
+        <item index="0" class="java.lang.String" itemvalue="Gradle.Project-8-ecommerce [bootRun]" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestProductControllerIT.ProductDetailAddItemIntegrationTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CheckoutControllerTest.confirmationTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CartControllerTest.addingItemToCartDisplaysFlashMessageIndexView" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.CartControllerTest.updateCartTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1418,7 +1345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493089177895</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="all tests pass">
+      <created>1493093048306</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1493093048307</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1511,7 +1445,8 @@
     <MESSAGE value="QuantityException thrown in service layer" />
     <MESSAGE value="ProductNotFoundException thrown in service layer" />
     <MESSAGE value="fixing tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing tests" />
+    <MESSAGE value="all tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="all tests pass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2073,18 +2008,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="150" column="30" lean-forward="false" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/acme/ecommerce/controller/TestProductControllerIT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
           <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/acme/ecommerce/controller/ProductController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="150" column="30" lean-forward="false" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
           <folding />
         </state>
       </provider>
