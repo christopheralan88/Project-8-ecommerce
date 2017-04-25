@@ -156,7 +156,7 @@ public class CartControllerTest {
 		Product product = productBuilder();
 
 		// this code runs when productService's findById() method is called in controller's method
-		when(productService.findById(1L)).thenReturn(product);
+		when(productService.findById(1L, 1)).thenReturn(product);
 
 		Purchase purchase = purchaseBuilder(product);
 

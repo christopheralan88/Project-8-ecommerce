@@ -7,8 +7,8 @@
                 <ul>
                     <li><a href="/product/about">About</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li th:if="${subTotal != 0}"><a class="button icon-right" href="/cart" th:text="'View Cart ' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
-                    <li th:if="${subTotal == null or subTotal == 0}"><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li th:if="${subTotal != 0}"><a class="button icon-right" th:id="cartButton" th:name="cartButton" href="/cart" th:text="'View Cart ' + ${'$' + #numbers.formatDecimal(subTotal, 1, 'COMMA', 2, 'POINT')}">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                    <li th:if="${subTotal == null or subTotal == 0}"><a class="button icon-right" th:id="cartButton" th:name="cartButton" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
                 </ul>
             </nav>
         </div>

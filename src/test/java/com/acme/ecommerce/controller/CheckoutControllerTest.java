@@ -280,16 +280,12 @@ public class CheckoutControllerTest {
 	public void confirmationTest() throws Exception {
 		Product product = productBuilder();
 
-		when(productService.findById(1L)).thenReturn(product);
-
 		Purchase purchase = purchaseBuilder(product);
 		when(sCart.getPurchase()).thenReturn(purchase);
 
 		CouponCode coupon = new CouponCode();
 		coupon.setCode("abcd");
 		when(sCart.getCouponCode()).thenReturn(coupon);
-
-		when(purchaseService.save(purchase)).thenReturn(purchase);
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/checkout/confirmation")).andDo(print())
 			.andExpect(status().isOk())
@@ -334,6 +330,7 @@ public class CheckoutControllerTest {
 		Purchase purchase = new Purchase();
 		purchase.setId(1L);
 		purchase.setProductPurchases(ppList);
+		purchase.setCreditCardNumber("1234123412344321");
 		return purchase;
 	}
 }

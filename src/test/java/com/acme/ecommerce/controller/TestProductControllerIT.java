@@ -79,7 +79,7 @@ public class TestProductControllerIT {
 		
 		String productCartName = cartPage.getAnchorByName("productName" + PRODUCT_ID).getTextContent();
 		String productCartPrice = cartPage.getHtmlElementById("productPrice" + PRODUCT_ID).getTextContent();
-		
+
 		String productCartSubtotal = cartPage.getHtmlElementById("subtotal").getTextContent();
 		
 		assertThat(productCartName).isEqualTo(PRODUCT_NAME);
